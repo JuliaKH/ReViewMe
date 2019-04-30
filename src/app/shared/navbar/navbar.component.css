@@ -1,0 +1,8 @@
+/*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
+.mat-toolbar{
+  background: #ffd54f;
+}
+
+.spacer{
+  flex: 1 1 auto;
+}
