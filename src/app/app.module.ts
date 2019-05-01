@@ -8,6 +8,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FirestoreSettingsToken} from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 
@@ -19,7 +20,7 @@ import { PostsModule } from './posts/posts.module';
 
 const routes: Routes = [
   {path: '', redirectTo: '/blog', pathMatch: 'full'},
-  {path: '', redirectTo: '/blog', pathMatch: 'full'},
+  {path: '', loadChildren: './posts/posts.module#PostsModule', pathMatch: 'full'},
 ]
 
 @NgModule({
@@ -29,6 +30,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
     CoreModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -37,7 +39,7 @@ const routes: Routes = [
     AngularFireAuthModule,
     PostsModule
   ],
-  providers: [],
+  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
