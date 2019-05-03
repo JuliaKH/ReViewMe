@@ -1,4 +1,5 @@
-<div *ngIf="this.post">
+<div *ngIf="post">
   <h3>{{post.title}}</h3>
-  <p>posted by {{post.author}} &bull; {{post.published}}</p>
+  <p>posted by {{post.author}} &bull; {{post.published.toDate()  | date: 'fullDate'}}</p>
+  <p>{{post.content}}</p>
 </div>
