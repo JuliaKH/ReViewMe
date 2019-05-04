@@ -4,6 +4,7 @@ import {PostService} from '../post.service';
 import {Observable} from 'rxjs';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 
 @Component({
@@ -48,15 +49,23 @@ export class PostDashboardComponent implements OnInit {
     if (file.type.split('/')[0] !== 'image') {
       return alert('Only image files!');
     } else {
-      const fileRef = this.storage.ref(path);
       const task = this.storage.upload(path, file);
-      // console.log('Image uploaded!');
-      // observe percentage changes
       this.uploadPercent = task.percentageChanges();
-      // get notified when the download URL is available
-      task.snapshotChanges().pipe((() => this.downloadURL = fileRef.getDownloadURL() )
-      ).subscribe(url => {this.image = url; console.log('url:', url); console.log('this.image:', this.image); });
-      console.log(this.uploadPercent);
+      task.then((result) => {
+        // do you code after upload here
+        const fileRef = this.storage.ref(path);
+        fileRef.getDownloadURL()
+          .subscribe((url) => {
+            this.image = url;
+            console.log(url);
+          }, (error) => {
+            console.error(error);
+          });
+      });
+
+      // task.snapshotChanges().pipe((() => this.downloadURL = fileRef.getDownloadURL() )
+      // ).subscribe(url => {this.image = url; console.log('url:', url); console.log('this.image:', this.image); });
+      // console.log(this.uploadPercent);
     }
   }
   // checkPercent() {
