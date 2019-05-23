@@ -4,9 +4,10 @@ import {FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, SliderComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -18,7 +19,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RouterModule,
     FormsModule,
     MaterialModule,
-    NavbarComponent
+    NavbarComponent,
+    SliderComponent
   ]
 })
 export class SharedModule { }

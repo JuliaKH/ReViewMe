@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="mySlides fade">
+    <div class="numbertext">
+      <h3>Любить чтение — это обменивать часы скуки, <br>
+        неизбежные в жизни, на часы большого наслаждения.</h3>
+      <p>Шарль Луи де Монтескьё</p>
+    </div>
+    <img src="assets/Books.jpg" alt="books">
+  </div>
+  <div class="mySlides fade">
+    <div class="numbertext">
+      <h3>Не будь на свете книг, я давно пришел бы в отчаяние.</h3>
+      <p>Артур Шопенгауэр</p>
+    </div>
+    <img src="assets/libros.jpg" alt="libros">
+  </div>
+  <div class="mySlides fade">
+    <div class="numbertext">
+      <h3>Книги — это зеркала: если туда заглядывает дурак, нельзя <br>
+        ожидать, что оттуда выглянет гений.</h3>
+      <p>Джоан Роулинг</p>
+    </div>
+    <img src="assets/blog.jpg" alt="notebook">
+  </div>
+  <a class="prev" (click)="plusSlides(-1);">&#10094;</a>
+  <a class="next" (click)="plusSlides(1);">&#10095;</a>
+  <div style="text-align:center">
+    <span class="dot" (click)="currentSlide(1)"></span>
+    <span class="dot" (click)="currentSlide(2)"></span>
+    <span class="dot" (click)="currentSlide(3)"></span>
+  </div>
+</div>
+<!-- The dots/circles -->

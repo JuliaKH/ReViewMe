@@ -25,6 +25,7 @@
     "@angular/router": "^7.2.14",
     "core-js": "^2.5.0",
     "firebase": "^5.10.1",
+    "ngx-pagination": "^3.2.1",
     "node-sass": "^4.12.0",
     "rxjs": "^6.5.1",
     "zone.js": "^0.9.0"

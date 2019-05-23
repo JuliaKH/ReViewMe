@@ -68,9 +68,5 @@ export class PostDashboardComponent implements OnInit {
       // console.log(this.uploadPercent);
     }
   }
-  // checkPercent() {
-  //   if (this.uploadPercent === 100) {
-  //     return true;
-  //   } else return false;
-  // }
+
 }

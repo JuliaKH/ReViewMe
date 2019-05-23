@@ -18,6 +18,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PostsModule } from './posts/posts.module';
 
+
 const routes: Routes = [
   {path: '', redirectTo: '/blog', pathMatch: 'full'},
   {path: '', loadChildren: './posts/posts.module#PostsModule', pathMatch: 'full'},
@@ -37,7 +38,7 @@ const routes: Routes = [
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    PostsModule
+    PostsModule,
   ],
   providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]

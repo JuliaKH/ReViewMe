@@ -2,3 +2,19 @@ img{
   max-width: 300px;
   max-height: 300px;
 }
+section{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 10px;
+  margin: 0 auto;
+  max-width: 95%;
+}
+.trash{
+  max-width: 23px;
+  max-height: 23px;
+}
+/*img{*/
+/*  width: 100%;*/
+/*}*/
+

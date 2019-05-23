@@ -1,8 +1,95 @@
 /*@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';*/
-.mat-toolbar{
-  background: #ffd54f;
+/*.mat-toolbar{*/
+/*  background: #ffd54f;*/
+/*}*/
+header{
+  background: #323C4D;
+  color: white;
 }
-
+.container{
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  /*flex-direction: row;*/
+  flex-flow: row wrap;
+  align-items: center;
+  /*flex-wrap: wrap;*/
+}
+h1{
+  margin: 20px 0;
+  font-family: 'Indie Flower', cursive;
+}
 .spacer{
   flex: 1 1 auto;
+}
+.menu{
+  /*margin-top: 25px;*/
+  margin-left: 50px;
+}
+.menu>li{
+  float: left;
+  padding-right: 15px;
+  position: relative;
+}
+.menu a {
+  color: inherit;
+}
+.menu span{
+  padding-left: 20px;
+}
+.wr-post-btn{
+  margin-right: 30px;
+}
+.btn{
+  box-sizing: border-box;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 4px;
+  overflow: visible;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+  margin-left: 30px;
+}
+.btn:hover{
+  background: rgba(0, 0,0, 0.2);
+}
+
+
+.menu .dropdown {
+  display: none;
+  /*left: 99px;*/
+  position: absolute;
+  /*top: 25px;*/
+  padding-top: 25px;
+  left: -20px;
+  z-index: 99;
+  min-width: 160px;
+}
+.menu .dropdown li{
+  /*border: 1px solid #000;*/
+  border-bottom: 2px solid #fff;
+  padding: 15px;
+  background: #323C4D;
+}
+.menu li:hover .dropdown {
+  display: block;
 }

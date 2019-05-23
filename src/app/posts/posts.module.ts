@@ -5,6 +5,7 @@ import { PostDashboardComponent } from './post-dashboard/post-dashboard.componen
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { SharedModule } from '../shared/shared.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
   { path: 'blog', component: PostListComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   declarations: [PostDashboardComponent, PostDetailComponent, PostListComponent],
   imports: [
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgxPaginationModule
   ]
 })
 export class PostsModule { }

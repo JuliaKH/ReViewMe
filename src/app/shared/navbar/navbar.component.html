@@ -1,14 +1,44 @@
-<mat-toolbar color="primary" >
-  <mat-toolbar-row>
-    <span routerLink="/blog">Blog</span>
+<!--<mat-toolbar color="primary" >-->
+<!--  <mat-toolbar-row>-->
+<!--    <span routerLink="/blog">Blog</span>-->
+<!--    <span class="spacer"></span>-->
+<!--    <div *ngIf="auth.afAuth.authState | async as user; else showLogin">-->
+<!--      <button mat-raised-button color="accent" routerLink="/dashboard">Write a Post</button>-->
+<!--          <span>Hello {{user.displayName}}!</span>-->
+<!--      <button mat-button (click)="auth.logout()">Logout</button>-->
+<!--    </div>-->
+<!--    <ng-template #showLogin>-->
+<!--      <button mat-button (click)="auth.login()">Login with Google</button>-->
+<!--    </ng-template>-->
+<!--  </mat-toolbar-row>-->
+<!--</mat-toolbar>-->
+
+<header>
+  <div class="container">
+    <h1 routerLink="/blog">Книжный блог</h1>
+    <nav class = flex-item>
+      <ul class="menu">
+        <li><a routerLink="/blog">Главная</a><span>|</span></li>
+        <li>
+          <a href="">Об авторах</a><span>|</span>
+          <ul class="dropdown">
+            <li><a href="#1">Julia Khalina</a></li>
+            <li><a href="#2">Grygoriy Shvydkyi</a></li>
+          </ul>
+        </li>
+        <li><a href="">Контакты</a></li>
+      </ul>
+    </nav>
     <span class="spacer"></span>
-    <div *ngIf="auth.afAuth.authState | async as user; else showLogin">
-      <button mat-raised-button color="accent" routerLink="/dashboard">Write a Post</button>
-          <span>Hello {{user.displayName}}!</span>
-      <button mat-button (click)="auth.logout()">Logout</button>
+    <div class="flex-item">
+      <div *ngIf="auth.afAuth.authState | async as user; else showLogin">
+        <button class="wr-post-btn" color="accent" routerLink="/dashboard">Write a Post</button>
+        <span>Hello {{user.displayName}}!</span>
+        <button class="btn" (click)="auth.logout()">Logout</button>
+      </div>
+      <ng-template #showLogin>
+        <button class="btn" (click)="auth.login()">Login with Google</button>
+      </ng-template>
     </div>
-    <ng-template #showLogin>
-      <button mat-button (click)="auth.login()">Login with Google</button>
-    </ng-template>
-  </mat-toolbar-row>
-</mat-toolbar>
+  </div>
+</header>

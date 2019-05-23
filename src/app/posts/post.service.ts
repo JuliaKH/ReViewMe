@@ -27,6 +27,7 @@ export class PostService {
       });
     }));
   }
+
   getPostData(id: string) {
     this.postDoc = this.afs.doc<Post>(`posts/${id}`);
     console.log(this.postDoc.valueChanges());
