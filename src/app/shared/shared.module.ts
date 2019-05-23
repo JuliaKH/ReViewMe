@@ -5,9 +5,10 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SliderComponent } from './slider/slider.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
-  declarations: [NavbarComponent, SliderComponent],
+  declarations: [NavbarComponent, SliderComponent, BreadcrumbComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,7 +21,8 @@ import { SliderComponent } from './slider/slider.component';
     FormsModule,
     MaterialModule,
     NavbarComponent,
-    SliderComponent
+    SliderComponent,
+    BreadcrumbComponent,
   ]
 })
 export class SharedModule { }

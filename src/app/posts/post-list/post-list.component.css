@@ -14,6 +14,9 @@ section{
   max-width: 23px;
   max-height: 23px;
 }
+app-breadcrumb{
+  display: none;
+}
 /*img{*/
 /*  width: 100%;*/
 /*}*/

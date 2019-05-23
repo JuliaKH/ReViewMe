@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule, Routes} from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { AngularFireModule } from '@angular/fire';
@@ -17,16 +17,22 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PostsModule } from './posts/posts.module';
+import { ContactsComponent } from './contacts/contacts.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/blog', pathMatch: 'full'},
   {path: '', loadChildren: './posts/posts.module#PostsModule', pathMatch: 'full'},
-]
+  {path: 'about', component: AboutComponent, data: {breadcrumb: 'Об авторе'}, },
+  {path: 'contacts', component: ContactsComponent, data: {breadcrumb: 'Контакты'}, },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,9 @@ const routes: Routes = [
     AngularFireAuthModule,
     PostsModule,
   ],
-  providers: [{ provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [{provide: FirestoreSettingsToken, useValue: {}}],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
