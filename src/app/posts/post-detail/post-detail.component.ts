@@ -4,6 +4,7 @@ import {PostService} from '../post.service';
 import { Router, RoutesRecognized } from '@angular/router';
 
 import {Post} from '../post';
+import {Comment} from '../comment';
 import {AuthService} from '../../core/auth.service';
 
 @Component({
@@ -14,6 +15,7 @@ import {AuthService} from '../../core/auth.service';
 export class PostDetailComponent implements OnInit {
 
   post: Post;
+  comment: Comment;
 
   editing: boolean = false;
 
@@ -28,10 +30,12 @@ export class PostDetailComponent implements OnInit {
   ngOnInit() {
     this.getPost();
     console.log(this);
+    // this.getComment();
   }
   getPost() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(this.postService.getPostData(id).subscribe(data => this.post));
+    console.log(id);
+    // console.log(this.postService.getPostData(id).subscribe(data => this.post));
     return this.postService.getPostData(id).subscribe(data => {this.post = data; });
   }
 
@@ -50,4 +54,12 @@ export class PostDetailComponent implements OnInit {
     this.postService.delete(id);
     this.router.navigate(['/blog']);
   }
+
+  // getComment() {
+  //   const id = this.route.snapshot.paramMap.get('id');
+  //   console.log(id);
+  //   // console.log(this.postService.getPostData(id).subscribe(data => this.post));
+  //   return this.postService.getCommentData(id).subscribe(data => {this.comment = data; });
+  // }
 }
+

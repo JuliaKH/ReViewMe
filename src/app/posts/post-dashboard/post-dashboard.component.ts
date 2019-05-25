@@ -20,7 +20,7 @@ export class PostDashboardComponent implements OnInit {
   buttonText = 'Create Post';
 
   uploadPercent: Observable<number>;
-  downloadURL: Observable<string>;
+  // downloadURL: Observable<string>;
 
   constructor(private auth: AuthService, private postService: PostService, private storage: AngularFireStorage) { }
 

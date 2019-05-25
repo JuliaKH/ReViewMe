@@ -1,0 +1,27 @@
+<ng-container>
+<!--  *ngIf="post"-->
+  <div class="card">
+    <h2>Comments</h2>
+    <mat-form-field>
+      <input matInput placeholder="User Name" [(ngModel)]="author">
+    </mat-form-field><br>
+    <mat-form-field>
+      <textarea matInput placeholder="Comment Content" [(ngModel)]="content" rows="5"></textarea>
+    </mat-form-field> <br>
+    <button class="wr-post-btn" (click)="createComment()" [disabled]="!author || !content">Submit</button>
+  </div>
+    <div *ngFor="let comment of comments | async">
+      <div class="card" *ngIf="comment.post_id===this.currentPostId">
+        <p >{{comment.published.toDate()  | date: 'fullDate'}}</p>
+        <div class="content">
+          <p class="name">{{comment.author}} </p><br>
+          <p>{{comment.content}}</p>
+        </div>
+        <button *ngIf="auth.currentUserId === post.authorId" class="op_btn" (click)="delete(comment)" >
+          <img class = "trash "src="assets/trash.png" alt="trash">
+        </button>
+      </div>
+
+    </div>
+
+</ng-container>

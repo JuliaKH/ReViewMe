@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AboutComponent} from '../about/about.component';
 import {AppModule} from '../app.module';
+import { CommentsComponent } from './comments/comments.component';
 
 const routes: Routes = [
   { path: 'blog', component: PostListComponent},
@@ -16,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PostDashboardComponent, PostDetailComponent, PostListComponent],
+  declarations: [PostDashboardComponent, PostDetailComponent, PostListComponent, CommentsComponent],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),

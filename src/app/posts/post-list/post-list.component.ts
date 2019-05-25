@@ -20,6 +20,7 @@ export class PostListComponent implements OnInit {
   ngOnInit() {
     this.posts = this.postService.getPosts();
     console.log(this);
+    // pagination
     this.posts.subscribe(result => {console.log(result.length); this.count = result.length; });
     this.config = {
       itemsPerPage: 8,
@@ -31,6 +32,7 @@ export class PostListComponent implements OnInit {
     this.postService.delete(id);
   }
 
+  // pagination
   pageChanged(event) {
     this.config.currentPage = event;
   }
