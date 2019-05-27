@@ -39,6 +39,7 @@ const routes: Routes = [
     NavbarComponent,
     SliderComponent,
     BreadcrumbComponent,
+    FooterComponent,
   ]
 })
 export class SharedModule { }

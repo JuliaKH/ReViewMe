@@ -16,8 +16,10 @@ header{
   align-items: center;
   /*flex-wrap: wrap;*/
 }
-h1{
+.flex-item, h1{
   margin: 20px 0;
+}
+h1{
   font-family: 'Indie Flower', cursive;
 }
 .spacer{
