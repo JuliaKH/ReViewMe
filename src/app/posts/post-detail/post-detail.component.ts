@@ -15,7 +15,7 @@ import {AuthService} from '../../core/auth.service';
 export class PostDetailComponent implements OnInit {
 
   post: Post;
-  comment: Comment;
+  // comment: Comment;
 
   editing: boolean = false;
 
@@ -29,12 +29,11 @@ export class PostDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getPost();
-    console.log(this);
+    // console.log(this);
     // this.getComment();
   }
   getPost() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     // console.log(this.postService.getPostData(id).subscribe(data => this.post));
     return this.postService.getPostData(id).subscribe(data => {this.post = data; });
   }
@@ -42,7 +41,8 @@ export class PostDetailComponent implements OnInit {
   updatePost() {
     const formData = {
       title: this.post.title,
-      content: this.post.content
+      content: this.post.content,
+      genre: this.post.genre
     };
     const id = this.route.snapshot.paramMap.get('id');
     this.postService.update(id, formData);

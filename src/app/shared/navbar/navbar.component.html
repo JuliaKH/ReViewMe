@@ -1,18 +1,3 @@
-<!--<mat-toolbar color="primary" >-->
-<!--  <mat-toolbar-row>-->
-<!--    <span routerLink="/blog">Blog</span>-->
-<!--    <span class="spacer"></span>-->
-<!--    <div *ngIf="auth.afAuth.authState | async as user; else showLogin">-->
-<!--      <button mat-raised-button color="accent" routerLink="/dashboard">Write a Post</button>-->
-<!--          <span>Hello {{user.displayName}}!</span>-->
-<!--      <button mat-button (click)="auth.logout()">Logout</button>-->
-<!--    </div>-->
-<!--    <ng-template #showLogin>-->
-<!--      <button mat-button (click)="auth.login()">Login with Google</button>-->
-<!--    </ng-template>-->
-<!--  </mat-toolbar-row>-->
-<!--</mat-toolbar>-->
-
 <header>
   <div class="container">
     <h1 routerLink="/blog">Книжный блог</h1>
@@ -29,6 +14,7 @@
         <li><a routerLink="/contacts">Контакты</a></li>
       </ul>
     </nav>
+
     <span class="spacer"></span>
     <div class="flex-item">
       <div *ngIf="auth.afAuth.authState | async as user; else showLogin">

@@ -19,6 +19,8 @@ import { SharedModule } from './shared/shared.module';
 import { PostsModule } from './posts/posts.module';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AboutComponent } from './about/about.component';
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 const routes: Routes = [
@@ -45,6 +47,7 @@ const routes: Routes = [
     AngularFireStorageModule,
     AngularFireAuthModule,
     PostsModule,
+    Ng2SearchPipeModule,
   ],
   providers: [{provide: FirestoreSettingsToken, useValue: {}}],
   exports: [

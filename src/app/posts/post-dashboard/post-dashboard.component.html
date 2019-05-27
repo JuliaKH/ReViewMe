@@ -19,6 +19,9 @@
       <input matInput placeholder="Post Title" [(ngModel)]="title">
     </mat-form-field><br>
     <mat-form-field>
+      <input matInput placeholder="Post Genre" [(ngModel)]="genre">
+    </mat-form-field><br>
+    <mat-form-field>
       <textarea matInput placeholder="Post Content" [(ngModel)]="content" rows="10"></textarea>
     </mat-form-field> <br>
     <button class="wr-post-btn" (click)="createPost()" [disabled]="!title || !content">{{buttonText}}</button>

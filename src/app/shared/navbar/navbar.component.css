@@ -93,3 +93,8 @@ h1{
 .menu li:hover .dropdown {
   display: block;
 }
+.search{
+  /*position: absolute;*/
+  z-index: 99;
+  background-color: #000;
+}

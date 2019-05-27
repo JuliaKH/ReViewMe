@@ -12,6 +12,9 @@
         <input matInput placeholder="Post Title" [(ngModel)]="post.title">
       </mat-form-field><br>
       <mat-form-field>
+        <input matInput placeholder="Post Genre" [(ngModel)]="post.genre">
+      </mat-form-field><br>
+      <mat-form-field>
         <textarea matInput placeholder="Post Content" [(ngModel)]="post.content" rows="10"></textarea>
       </mat-form-field> <br>
       <button mat-raised-button color="accent" (click)="updatePost()" [disabled]="!post.title || !post.content">Save</button>
@@ -22,6 +25,7 @@
   <div [hidden] = "editing">
     <div class="card">
       <img src="{{post.image}}" alt="{{post.title}}">
+      <p>{{post.genre}}</p>
       <p>posted by {{post.author}} &bull; {{post.published.toDate()  | date: 'fullDate'}}</p>
       <div class="content">
         {{post.title}} <br>

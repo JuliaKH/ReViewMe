@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Post} from './post';
-import {Comment} from './comment';;
-// import 'rxjs/add/operator/map';
+import {Comment} from './comment';
 import { map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
-// import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
+  posts: Observable<Post[]>;
+
   postCollection: AngularFirestoreCollection<Post>;
   postDoc: AngularFirestoreDocument<Post>;
+  posts$: Observable<any[]>;
 
   commentCollection: AngularFirestoreCollection<Comment>;
   commentDoc: AngularFirestoreDocument<Comment>;
@@ -25,6 +27,7 @@ export class PostService {
       ref.orderBy('published', 'desc'));
   }
 
+  // Posts
   getPosts() {
     return this.postCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
@@ -53,6 +56,7 @@ export class PostService {
     return this.getPost(id).update(formData);
   }
 
+  // Comments
   getComments() {
     return this.commentCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
@@ -61,12 +65,6 @@ export class PostService {
         return {id, ...data};
       });
     }));
-  }
-
-  getCommentData(id: string) {
-    this.commentDoc = this.afs.doc<Comment>(`comments/${id}`);
-    console.log(this.commentDoc.valueChanges());
-    return this.commentDoc.valueChanges();
   }
   create_comment(data: Comment) {
     this.commentCollection.add(data);
@@ -78,4 +76,12 @@ export class PostService {
   delete_comment(id: string) {
     return this.getComment(id).delete();
   }
+
+  // Filtering
+  filterBy(categoriaToFilter: string) {
+    this.posts$ = this.afs.collection('posts', ref =>
+      ref.where('genre', '==', categoriaToFilter )).valueChanges();
+
+    return this.posts$;
   }
+}

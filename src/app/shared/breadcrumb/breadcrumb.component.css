@@ -1,3 +1,18 @@
 li{
   display: inline;
 }
+a, a:visited{
+  color: #323C4D;
+}
+.container{
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+.breadcrumb{
+  padding: 30px 0;
+}
+.breadcrumb img{
+  height: 15px;
+  padding-right: 3px;
+}

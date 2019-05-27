@@ -1,6 +1,9 @@
-<ol class="breadcrumb" *ngIf="setBreadcrumbs()">
-  <li><a routerLink="" class="breadcrumb">Главная</a></li>
-  <li *ngFor="let breadcrumb of breadcrumbs">
-    <a [routerLink]="[breadcrumb.url, breadcrumb.params]"> > {{ breadcrumb.label }}</a>
-  </li>
-</ol>
+<div class="container">
+  <ol class="breadcrumb" *ngIf="setBreadcrumbs()">
+    <li><img src="assets/Home.png" alt="home"><a routerLink="">Главная</a></li>
+    <li *ngFor="let breadcrumb of breadcrumbs">
+      <a [routerLink]="[breadcrumb.url, breadcrumb.params]"> > {{ breadcrumb.label }}</a>
+    </li>
+  </ol>
+</div>
+

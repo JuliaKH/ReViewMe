@@ -15,6 +15,7 @@ import { from } from 'rxjs';
 export class PostDashboardComponent implements OnInit {
   title: string;
   image: string = null;
+  genre: string;
   content: string;
 
   buttonText = 'Create Post';
@@ -31,6 +32,7 @@ export class PostDashboardComponent implements OnInit {
       author: this.auth.authState.displayName || this.auth.authState.email,
       authorId: this.auth.currentUserId,
       content: this.content,
+      genre: this.genre,
       image: this.image,
       published: new Date(),
       title: this.title
@@ -38,6 +40,7 @@ export class PostDashboardComponent implements OnInit {
     this.postService.create(data);
     this.title = '';
     this.content = '';
+    this.genre = '';
     this.buttonText = 'Post Created!';
     setTimeout(() => this.buttonText = 'Create Post', 3000);
   }

@@ -9,6 +9,10 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {AboutComponent} from '../about/about.component';
 import {AppModule} from '../app.module';
 import { CommentsComponent } from './comments/comments.component';
+import { SearchComponent } from './search/search.component';
+// import { FilterPipe } from './filter.pipe';
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes: Routes = [
   { path: 'blog', component: PostListComponent},
@@ -17,11 +21,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PostDashboardComponent, PostDetailComponent, PostListComponent, CommentsComponent],
+  declarations: [PostDashboardComponent, PostDetailComponent, PostListComponent, CommentsComponent, SearchComponent],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
     NgxPaginationModule,
+    Ng2SearchPipeModule
   ]
 })
 export class PostsModule { }

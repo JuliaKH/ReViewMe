@@ -10,7 +10,6 @@ import {AuthService} from '../../core/auth.service';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-  posts: Observable<Post[]>;
 
   config: any;
   count: number;
@@ -18,10 +17,10 @@ export class PostListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.posts = this.postService.getPosts();
-    console.log(this);
-    // pagination
-    this.posts.subscribe(result => {console.log(result.length); this.count = result.length; });
+    this.postService.posts = this.postService.getPosts();
+    // console.log(this);
+    // Pagination
+    this.postService.posts.subscribe(result => {console.log(result.length); this.count = result.length; });
     this.config = {
       itemsPerPage: 8,
       currentPage: 1,
@@ -36,4 +35,5 @@ export class PostListComponent implements OnInit {
   pageChanged(event) {
     this.config.currentPage = event;
   }
+
 }
