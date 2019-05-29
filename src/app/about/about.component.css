@@ -1,0 +1,47 @@
+.flex-container{
+  display: flex;
+  flex-flow: row wrap;
+  /*align-items: center;*/
+  justify-content: space-around;
+}
+.flex-item{
+  position: relative;
+  height: 300px;
+  width: 300px;
+  border: 10px solid #fff;
+  border-bottom: 45px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+  -moz-box-shadow: 3px 3px 3px #777;
+  box-shadow: 3px 3px 3px #777;
+  margin-top: 40px;
+}
+.flex-item p{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: -40px;
+  font: 400 18px/1 'Kaushan Script', cursive;
+  color: #888;
+}
+.flex-item:first-child{
+background: url("../../assets/bum.jpg") center space;
+}
+.flex-item:nth-child(2){
+  background: url("../../assets/writers.jpg") center space;
+}
+.flex-item:nth-child(3){
+  background: url("../../assets/lessons.jpg") center no-repeat;
+}
+#flex-lower .flex-item:nth-child(1){
+background: url("../../assets/sale.png") center no-repeat;
+}
+#flex-lower .flex-item:nth-child(2){
+  background: url("../../assets/EventCrowdShot.jpg") center round;
+}
+#flex-lower .flex-item:nth-child(3){
+  background: url("../../assets/bookfest.jpg") center space;
+}
+.events{
+  text-align: center;
+  font-size: 24px;
+}

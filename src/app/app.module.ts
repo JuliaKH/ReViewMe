@@ -19,22 +19,25 @@ import { SharedModule } from './shared/shared.module';
 import { PostsModule } from './posts/posts.module';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AboutComponent } from './about/about.component';
-// search module
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { About1Component } from './about1/about1.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/blog', pathMatch: 'full'},
   {path: '', loadChildren: './posts/posts.module#PostsModule', pathMatch: 'full'},
-  {path: 'about', component: AboutComponent, data: {breadcrumb: 'Об авторе'}, },
+  {path: 'about', component: AboutComponent, data: {breadcrumb: 'Julia Khalina'}, },
+  {path: 'about1', component: About1Component, data: {breadcrumb: 'Grygoriy Shvydkyi'}, },
   {path: 'contacts', component: ContactsComponent, data: {breadcrumb: 'Контакты'}, },
 ];
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactsComponent,
     AboutComponent,
+    About1Component,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,6 @@ const routes: Routes = [
     AngularFireStorageModule,
     AngularFireAuthModule,
     PostsModule,
-    Ng2SearchPipeModule,
   ],
   providers: [{provide: FirestoreSettingsToken, useValue: {}}],
   exports: [

@@ -1,6 +1,6 @@
 * {box-sizing:border-box}
 
-.container {
+.slider-container {
   max-width: 100%;
   margin: auto auto 20px auto;
   position: relative;
