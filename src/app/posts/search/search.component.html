@@ -1,55 +1,41 @@
-
 <section>
   <div class="container">
-<!--    <div class="search">-->
-<!--      <div>-->
-<!--        <input #searchInput class="form-control" type="text" name="search" [(ngModel)]="searchText"-->
-<!--               autocomplete="on" placeholder="start searching">-->
-<!--        <div *ngIf="searchInput.value">-->
-<!--          <div *ngFor = "let post of this.postService.posts | async  | filter:searchText" >-->
-<!--            <p>-->
-<!--              {{post.title}}-->
-<!--            </p>-->
-<!--          </div>-->
-<!--        </div>-->
-
-
-<!--      </div>-->
-<!--    </div>-->
-    <div class="search">
-      <input type="text" #searchInput placeholder="search movies..." class="input" [(ngModel)]="searchText">
-      <div *ngIf="searchInput.value">
-        <div *ngFor="let post of posts | async">
-          <h4 routerLink="{{post.id}}">{{post?.title}}</h4>
-          <!--        <p>-->
-          <!--          {{post?.Plot}}-->
-          <!--        </p>-->
-        </div>
-        <div *ngIf="(posts | async)?.length < 1">
-          <hr>
-          <p>
-            No results found :(
-          </p>
-        </div>
+    <div class="flex-container">
+      <div class="search flex-item">
+        <form autocomplete="off">
+          <div class="autocomplete">
+            <input type="text" #searchInput (keyup)="search(searchInput.value)" placeholder="search..." class="input">
+            <div *ngIf="searchInput.value">
+              <div class="autocomplete-items" >
+                <div *ngFor="let post of arrCopy" (click)="searchInput.value = post.title">{{post?.title}}</div>
+              </div>
+              <div class="autocomplete-items" *ngIf="(arrCopy)?.length < 1">
+                <div>No results found :(</div>
+              </div>
+            </div>
+          </div>
+          <input type="button" value="Submit" (click)="submit(searchInput.value)">
+        </form>
       </div>
-
+      <span class="spacer"></span>
+      <div class="filter flex-item">
+        <!--      <span>Filter by:</span>-->
+        <select #selectElem>
+          <option  value="Классика">Классика</option>
+          <option  value="Современная классика">Современная классика</option>
+          <option  value="Фантастика">Фантастика</option>
+          <option  value="Современная проза">Современная проза</option>
+        </select>
+        <button (click)="filtrarData(selectElem.value)" class="btn btn-outline-primary btn-sm mx-1">Применить</button>
+        <button (click)="this.postService.posts = this.postService.getPosts();"
+                class="btn btn-outline-primary btn-sm mx-1">Clean Filters</button>
+        <hr>
+      </div>
+      <div class="sort flex-item">
+        Отсортировать по:
+        <button (click)="alphabetSort()()" class="btn btn-outline-primary btn-sm mx-1">По алфавиту</button>
+        <button (click)="dateSort()" class="btn btn-outline-primary btn-sm mx-1">По дате</button>
+      </div>
     </div>
-    <div class="filter">
-      <button (click)="this.postService.posts = this.postService.getPosts();"
-              class="btn btn-outline-primary btn-sm mx-1">Clean Filters</button>
-      <span>Filter by:</span>
-      <select #selectElem>
-        <option  value="Классика">Классика</option>
-        <option  value="Современная классика">Современная классика</option>
-        <option  value="Фантастика">Фантастика</option>
-        <option  value="Современная проза">Современная проза</option>
-      </select>
-      <button (click)="filtrarData(selectElem.value)" class="btn btn-outline-primary btn-sm mx-1">Применить</button>
-      <hr>
-    </div>
-    Отсортировать по:
-    <button (click)="alphabetSort()()" class="btn btn-outline-primary btn-sm mx-1">По алфавиту</button>
-    <button (click)="dateSort()" class="btn btn-outline-primary btn-sm mx-1">По дате</button>
-
   </div>
 </section>

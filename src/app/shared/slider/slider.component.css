@@ -2,8 +2,9 @@
 
 .slider-container {
   max-width: 100%;
-  margin: auto auto 20px auto;
+  /*margin: auto ;*/
   position: relative;
+  /*top: 60px;*/
   z-index: 1;
 }
 .mySlides {
@@ -34,10 +35,14 @@ img{
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
+.mySlides{
+  padding-top: 70px;
+}
 .numbertext{
   color: #f2f2f2;
   padding: 8px 12px;
   position: absolute;
+  margin-top: 70px;
 }
 .mySlides:nth-child(1) .numbertext {
   /*font-size: 12px;*/
@@ -62,6 +67,12 @@ img{
 .numbertext p{
   font-size: 16px;
   font-style: italic;
+}
+.dots{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 /* The dots/bullets/indicators */
 .dot {
@@ -93,4 +104,40 @@ img{
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+@media screen and (max-width: 921px) {
+  img{
+    height: 80vh;
+  }
+}
+@media (max-width: 562px){
+  img{
+    height: 70vh;
+  }
+  .numbertext h3{
+    font-size: 20px;
+  }
+  .numbertext p{
+    font-size: 12px;
+  }
+}
+@media (max-width: 360px){
+  img{
+    height: 60vh;
+  }
+  .numbertext h3{
+    font-size: 18px;
+  }
+  .numbertext p{
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 921px) {
+  .mySlides{
+    padding-top: 140px;
+  }
+  .numbertext{
+    margin-top: 140px;
+  }
 }

@@ -2,9 +2,8 @@
   max-width: 1170px;
   margin: 0 auto;
   padding: 0 30px;
-  /*display: flex;*/
-  /*flex-direction: row;*/
-  /*flex-flow: row wrap;*/
-  /*align-items: center;*/
-  /*flex-wrap: wrap;*/
+}
+.map{
+  max-width: 600px;
+  width: 100%;
 }

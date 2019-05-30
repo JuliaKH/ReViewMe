@@ -1,8 +1,8 @@
-<header>
+<header class="header">
   <div class="container">
     <h1 routerLink="/blog">Книжный блог</h1>
     <nav class = flex-item>
-      <ul class="menu">
+      <ul class="menu" id="mainMenu">
         <li><a routerLink="/blog">Главная</a><span>|</span></li>
         <li>
           <a>Об авторах</a><span>|</span>
@@ -14,7 +14,28 @@
         <li><a routerLink="/contacts">Контакты</a></li>
       </ul>
     </nav>
+    <div id="menuToggle">
+      <!--
+      A fake / hidden checkbox is used as click reciever,
+      so you can use the :checked selector on it.
+      -->
+      <input type="checkbox" />
+      <!--
+      Some spans to act as a hamburger.
 
+      They are acting like a real hamburger,
+      not that McDonalds stuff.
+      -->
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul id="menu">
+        <li><a routerLink="/blog" title="Home">Главная</a></li>
+        <li><a routerLink="/about" title="Home">Julia Khalina</a></li>
+        <li><a routerLink="/about1" title="Home">Grygoriy Shvydkyi</a></li>
+        <li><a routerLink="/contacts" title="Home">Контакты</a></li>
+      </ul>
+    </div>
     <span class="spacer"></span>
     <div class="flex-item">
       <div *ngIf="auth.afAuth.authState | async as user; else showLogin">
@@ -23,7 +44,7 @@
         <button class="btn" (click)="auth.logout()">Logout</button>
       </div>
       <ng-template #showLogin>
-        <button class="btn" (click)="auth.login()">Login with Google</button>
+        <button class="btn btn_login" (click)="auth.login()">Login with Google</button>
       </ng-template>
     </div>
   </div>

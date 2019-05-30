@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {combineLatest, Observable, Subject} from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import {PostService} from '../post.service';
+
+import { map } from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
+import {debounceTime} from 'rxjs/operators';
+import {distinctUntilChanged} from 'rxjs/operators';
+
 
 
 
@@ -11,46 +17,67 @@ import {PostService} from '../post.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
-  // searchterm: string;
-  //
-  // startAt = new Subject();
-  // endAt = new Subject();
-  //
-  // startObs = this.startAt.asObservable();
-  // endObs = this.endAt.asObservable();
-  //
-  // names;
+  posts$;
+  startAt: BehaviorSubject<string | null> = new BehaviorSubject('');
+  arrCopy;
 
   posts = this.postService.posts;
-  // public data: Observable<any[]>;
-  // searchText: any;
 
   constructor(private afs: AngularFirestore, private postService: PostService) {
-    // this.data = afs.collection('/posts').valueChanges();
   }
 
   ngOnInit() {
-    // combineLatest([this.startObs, this.endObs]).subscribe((value) => {
-    //   this.firequery(value[0], value[1]).subscribe((names) => {this.names = names;
-    //   });
-    // });
-    // console.log(this.names);
+    // this.posts$ = this.getPosts(this.startAt);
+    this.getPosts(this.startAt).subscribe(data => {
+      this.posts$ = data;
+      this.arrCopy = data;
+      console.log(this.posts$);
+    });
   }
-  // search($event) {
-  //   const q = $event.target.value;
-  //   this.startAt.next(q);
-  //   this.endAt.next(q + '\uf8ff ');
-  //   console.log(this.names);
-  // }
-  //
-  // firequery(start, end) {
-  //   // console.log(this.afs.collection('posts', ref =>
-  //   //   ref.limit(4).orderBy('title').startAt(start).endAt(end)).valueChanges());
-  //   return this.afs.collection('posts', ref =>
-  //     ref.limit(10).orderBy('title').startAt(start).endAt(end)).valueChanges();
-  // }
+  getPosts(start: BehaviorSubject<string>): Observable<any> {
+    return start.pipe(
+      switchMap(startText => {
+        const endText = startText + '\uf8ff';
+        return this.afs
+          .collection('posts', ref =>
+            ref
+              .orderBy('title')
+              .limit(10)
+              .startAt(startText)
+              .endAt(endText)
+          )
+      .snapshotChanges().pipe(
+            debounceTime(200),
+            distinctUntilChanged(),
+            map(changes => {
+            return changes.map(c => {
+              console.log(c);
+              const data = c.payload.doc.data();
+              const id = c.payload.doc.id;
+              return { id, ...data };
+            });
+          })
+          );
+      })
+    );
+  }
+  search(searchText) {
+    this.arrCopy = this.posts$;
+    const arr = this.posts$.filter((item) => {
+      console.log(item.title);
+      return item.title.toLowerCase().startsWith(searchText.toLowerCase());
+    });
+    this.arrCopy = arr;
+  }
 
+  submit(value) {
+    // this.postService.posts = this.posts$;
+    // this.posts$ = this.getPosts(this.startAt);
+    this.posts$ = this.afs.collection('posts', ref =>
+      ref.where('title', '==', value )).valueChanges();
+    console.log(this.posts$.title);
+    this.postService.posts = this.posts$;
+  }
   filtrarData(categoriaToFilter: string) {
     this.postService.posts = this.postService.filterBy(categoriaToFilter);
     console.log(categoriaToFilter) ;

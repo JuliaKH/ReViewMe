@@ -24,10 +24,10 @@
   color: #888;
 }
 .flex-item:first-child{
-background: url("../../assets/bum.jpg") center space;
+background: url("../../assets/bum.jpg") center;
 }
 .flex-item:nth-child(2){
-  background: url("../../assets/writers.jpg") center space;
+  background: url("../../assets/writers.jpg") center;
 }
 .flex-item:nth-child(3){
   background: url("../../assets/lessons.jpg") center no-repeat;
@@ -39,7 +39,7 @@ background: url("../../assets/sale.png") center no-repeat;
   background: url("../../assets/EventCrowdShot.jpg") center round;
 }
 #flex-lower .flex-item:nth-child(3){
-  background: url("../../assets/bookfest.jpg") center space;
+  background: url("../../assets/bookfest.jpg") center;
 }
 .events{
   text-align: center;
