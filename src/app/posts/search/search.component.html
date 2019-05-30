@@ -17,22 +17,24 @@
           <input type="button" value="Submit" (click)="submit(searchInput.value); searchInput.value = ''">
         </form>
       </div>
-      <span class="spacer"></span>
+<!--      <span class="spacer"></span>-->
       <div class="filter flex-item">
         <!--      <span>Filter by:</span>-->
-        <select #selectElem>
-          <option  value="Классика">Классика</option>
-          <option  value="Современная классика">Современная классика</option>
-          <option  value="Фантастика">Фантастика</option>
-          <option  value="Современная проза">Современная проза</option>
-        </select>
-        <button (click)="filtrarData(selectElem.value)" class="int_btn">Применить</button>
-        <button (click)="this.postService.posts = this.postService.getPosts();"
+        <div class="select-group">
+          <select #selectElem>
+            <option  value="Классика">Классика</option>
+            <option  value="Современная классика">Современная классика</option>
+            <option  value="Фантастика">Фантастика</option>
+            <option  value="Современная проза">Современная проза</option>
+          </select>
+          <button (click)="filtrarData(selectElem.value)" class="int_btn">Применить</button>
+        </div>
+        <button (click)="allPosts()"
                 class="int_btn">Все посты</button>
       </div>
       <div class="sort flex-item">
-        Отсортировать по:
-        <button (click)="alphabetSort()()" class="transp_btn">По алфавиту</button>
+        <span class="sort-label">Отсортировать по:</span>
+        <button (click)="alphabetSort()" class="transp_btn">По алфавиту</button>
         <button (click)="dateSort()" class="transp_btn">По дате</button>
       </div>
     </div>

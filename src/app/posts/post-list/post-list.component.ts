@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {Post} from '../post';
 import {PostService} from '../post.service';
 import {AuthService} from '../../core/auth.service';
+import { catchError } from 'rxjs/operators';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-post-list',
@@ -13,6 +15,7 @@ export class PostListComponent implements OnInit {
 
   config: any;
   count: number;
+  // public errMsg;
   constructor( private postService: PostService, public auth: AuthService) {
   }
 

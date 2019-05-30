@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { Observable, BehaviorSubject } from 'rxjs';
+import {Observable, BehaviorSubject, throwError} from 'rxjs';
 import {PostService} from '../post.service';
 
-import { map } from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {switchMap} from 'rxjs/operators';
 import {debounceTime} from 'rxjs/operators';
 import {distinctUntilChanged} from 'rxjs/operators';
@@ -56,7 +56,12 @@ export class SearchComponent implements OnInit {
               const id = c.payload.doc.id;
               return { id, ...data };
             });
-          })
+          }),
+            catchError( err => {
+              console.error(err.message);
+              console.log('Error is handled');
+              return throwError('Error thrown from catchError');
+            })
           );
       })
     );
@@ -95,6 +100,9 @@ export class SearchComponent implements OnInit {
       ref.orderBy('published', 'desc'));
     this.postService.posts = this.postService.getPosts();
   }
-
-
+  allPosts() {
+    this.postService.postCollection = this.afs.collection('posts', ref =>
+      ref.orderBy('published', 'desc'));
+    this.postService.posts = this.postService.getPosts();
+  }
 }

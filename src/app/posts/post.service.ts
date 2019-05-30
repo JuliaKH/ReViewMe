@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Post} from './post';
 import {Comment} from './comment';
-import { map } from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
+import {HttpErrorResponse} from '@angular/common/http';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class PostService {
 
   postCollection: AngularFirestoreCollection<Post>;
   postDoc: AngularFirestoreDocument<Post>;
-  posts$: Observable<any[]>;
+  // posts$: Observable<any[]>;
 
   commentCollection: AngularFirestoreCollection<Comment>;
 
@@ -34,9 +35,14 @@ export class PostService {
         const id = a.payload.doc.id;
         return {id, ...data};
       });
-    }));
+    }),
+      catchError( err => {
+        console.error(err.message);
+        console.log('Error is handled');
+        return throwError('Error thrown from catchError');
+  })
+    );
   }
-
   getPostData(id: string) {
     this.postDoc = this.afs.doc<Post>(`posts/${id}`);
     // console.log(this.postDoc.valueChanges());
