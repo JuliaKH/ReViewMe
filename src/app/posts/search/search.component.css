@@ -4,6 +4,7 @@
   flex-flow: row wrap;
   align-items: center;
   /*flex-wrap: wrap;*/
+  justify-content: center;
 }
 section{
   background: #323C4D;
@@ -14,7 +15,7 @@ section{
 }
 .search{
   padding: 20px 0;
-  width: 100%;
+  width: 30%;
 }
 .autocomplete {
   /*the container must be positioned relative:*/
@@ -23,21 +24,21 @@ section{
   max-width: 250px;
   width: 100%;
 }
-input {
+input, .int_btn{
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
 }
 input[type=text] {
   background-color: #f1f1f1;
   width: 100%;
 }
-input[type=button] {
+input[type=button], .int_btn {
   background-color: DodgerBlue;
   color: #fff;
   margin-left: 30px;
-  display: inline;
+  /*display: inline;*/
 }
 .autocomplete-items {
   position: absolute;
@@ -66,4 +67,10 @@ input[type=button] {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+.transp_btn{
+  background-color: transparent;
+  border: transparent;
+  color: white;
+  font-size: 14px;
 }

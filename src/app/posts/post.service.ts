@@ -17,7 +17,6 @@ export class PostService {
   posts$: Observable<any[]>;
 
   commentCollection: AngularFirestoreCollection<Comment>;
-  commentDoc: AngularFirestoreDocument<Comment>;
 
   constructor(private afs: AngularFirestore) {
     this.postCollection = this.afs.collection('posts', ref =>
@@ -79,9 +78,11 @@ export class PostService {
 
   // Filtering
   filterBy(categoriaToFilter: string) {
-    this.posts$ = this.afs.collection('posts', ref =>
-      ref.where('genre', '==', categoriaToFilter )).valueChanges();
-
-    return this.posts$;
+    // this.posts$ = this.afs.collection('posts', ref =>
+    //   ref.where('genre', '==', categoriaToFilter )).valueChanges();
+    this.postCollection = this.afs.collection('posts', ref =>
+      ref.where('genre', '==', categoriaToFilter ));
+    // return this.posts$;
+    return this.postCollection;
   }
 }

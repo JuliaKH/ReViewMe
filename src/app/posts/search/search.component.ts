@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   startAt: BehaviorSubject<string | null> = new BehaviorSubject('');
   arrCopy;
 
-  posts = this.postService.posts;
+  // posts = this.postService.posts;
 
   constructor(private afs: AngularFirestore, private postService: PostService) {
   }
@@ -42,7 +42,7 @@ export class SearchComponent implements OnInit {
           .collection('posts', ref =>
             ref
               .orderBy('title')
-              .limit(10)
+              .limit(20)
               .startAt(startText)
               .endAt(endText)
           )
@@ -73,14 +73,17 @@ export class SearchComponent implements OnInit {
   submit(value) {
     // this.postService.posts = this.posts$;
     // this.posts$ = this.getPosts(this.startAt);
-    this.posts$ = this.afs.collection('posts', ref =>
-      ref.where('title', '==', value )).valueChanges();
-    console.log(this.posts$.title);
-    this.postService.posts = this.posts$;
+    // this.posts$ = this.afs.collection('posts', ref =>
+    //   ref.where('title', '==', value )).valueChanges();
+    this.postService.postCollection = this.afs.collection('posts', ref =>
+      ref.where('title', '==', value ).orderBy('published', 'desc'));
+    this.postService.posts = this.postService.getPosts();
   }
   filtrarData(categoriaToFilter: string) {
-    this.postService.posts = this.postService.filterBy(categoriaToFilter);
-    console.log(categoriaToFilter) ;
+    // this.postService.posts = this.postService.filterBy(categoriaToFilter);
+    this.postService.filterBy(categoriaToFilter);
+    this.postService.posts = this.postService.getPosts();
+      console.log(categoriaToFilter) ;
   }
   alphabetSort() {
     this.postService.postCollection = this.afs.collection('posts', ref =>
